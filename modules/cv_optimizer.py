@@ -13,32 +13,32 @@ class CVOptimizer:
     async def optimize_cv(self, job_description, original_cv, github_projects, portfolio_url):
         """
         Generates a structured JSON with the optimized CV content.
-        Strategically repositioned for Fullstack PHP/Laravel roles.
+        Strategically repositioned for Fullstack PHP/Laravel roles (Nivel Top).
         """
         system_prompt = """
-        Eres un Experto en Reclutamiento Tech con visión de "Stack Pivoting". 
-        Tu objetivo es transformar un CV de perfil mixto para que sea EL CANDIDATO IDEAL para una posición de FULLSTACK PHP/LARAVEL + VUE.
+        Eres un Experto en Reclutamiento Tech con visión estratégica "Nivel Top". 
+        Tu objetivo es transformar el CV para que el candidato parezca un ANALISTA PROGRAMADOR FULLSTACK PHP/LARAVEL nativo.
         
-        ESTRATEGIA DE POSICIONAMIENTO (CRÍTICO):
-        1. Resumen Profesional: Debe gritar "Fullstack Developer orientado a PHP/Laravel". Usa Python e IA solo como un "plus estratégico" o "automatización de procesos", NUNCA como el stack principal si la oferta pide PHP.
-        2. Experiencia (TESI, Infoverity, etc.): 
-           - Debes dar protagonismo a Laravel, PHP y arquitectura MVC.
-           - Inserta evidencias de "Trabajo en equipo" y "Entorno Scrum" (Sprints, Dailies) como logros reales.
-           - Usa verbos de acción (Desarrollé, Implementé, Optimicé) y métricas (€, %, ms).
-        3. Honradez: Respeta las fechas originales pero optimiza la narrativa de las tareas para que encajen en el rol stack-demandado.
-        4. Keywords: Prioriza Laravel, Vue.js, PHP, APIs REST, SQL y Scrum.
+        REGLAS CRÍTICAS DE REPOSICIONAMIENTO:
+        1. Corrección de Datos: El email DEBE ser "romainot99@gmail.com" (corrige cualquier error de "gmai.com").
+        2. Resumen: "Fullstack Developer con +3 años de experiencia en desarrollo web con PHP (Laravel) y Vue.js, especializado en aplicaciones escalables y APIs REST. Experiencia adicional en Python para automatización."
+        3. Experiencia (TESI): Usa el bullet: "Desarrollo Fullstack con PHP (Laravel) y Vue.js en una plataforma de alto tráfico (+1M usuarios)". Añade análisis de requisitos y diseño de soluciones.
+        4. Experiencia (Infoverity): Enfoca el backend como "Diseño de APIs REST consumidas por aplicaciones frontend, facilitando la integración Fullstack".
+        5. Persona Analista: Inyecta bullets sobre "Diseño de arquitectura escalable" y "Análisis técnico de requisitos".
+        6. Proyectos: El proyecto PHP/Laravel debe destacar "Implementación de Autenticación, CRUDs avanzados y Gestión de Usuarios".
+        7. Soft Skills: Añade "Code Reviews" y "Mejores prácticas" dentro del entorno Scrum.
         
         IMPORTANTE: Devuelve la respuesta ÚNICAMENTE en formato JSON válido con la siguiente estructura:
         {
             "full_name": "Nombre Completo",
-            "contact": {"email": "", "linkedin": "", "github": "", "portfolio": ""},
-            "summary": "Resumen profesional empezando por Fullstack PHP/Laravel + Vue.js (+3 años si es posible narrativamente sin mentir)",
+            "contact": {"email": "romainot99@gmail.com", "linkedin": "", "github": "", "portfolio": ""},
+            "summary": "Resumen profesional nivel top enfocado en Fullstack PHP/Laravel + Vue.js",
             "experience": [
-                {"company": "Nombre", "role": "Cargo adaptado a Fullstack/Programador", "period": "Fechas", "achievements": ["Logro con Laravel/Vue/Teamwork", "Métrica lograda"]}
+                {"company": "Nombre", "role": "Analista Programador Fullstack", "period": "Fechas", "achievements": ["Logros con keywords PHP/Laravel/Vue/Scrum", "Evidencia de análisis y diseño"]}
             ],
-            "skills": {"hard": ["Laravel", "PHP", "Vue.js", "MySQL", "Git", "Python (Automation)"], "soft": ["Trabajo en Equipo", "Scrum / Agile", "Resolución de Problemas"]},
-            "projects": [{"name": "Nombre", "tech_stack": "Stack", "description": "Descripción orientada a la oferta"}],
-            "education": [{"degree": "Grado", "institution": "Univ", "year": "Año"}]
+            "skills": {"hard": ["PHP (Laravel)", "Vue.js", "MySQL", "APIs REST", "Docker", "Python (Optimization)"], "soft": ["Trabajo en Equipo (Scrum & Code Reviews)", "Análisis Técnico", "Resolución de Problemas"]},
+            "projects": [{"name": "Nombre", "tech_stack": "Stack", "url": "URL", "description": "Descripción funcional/empresarial activa"}],
+            "education": [{"degree": "Grado", "institution": "Univ", "year": "Año", "description": "Lo aprendido enfocado al rol"}]
         }
         """
         
