@@ -110,7 +110,10 @@
     <div class="header">
         <h1>{{ data.full_name }}</h1>
         <div class="contact-info">
-            {{ data.contact.email }} | {{ data.contact.linkedin }} | {{ data.contact.github }} | {{ data.contact.portfolio }}
+            <a href="mailto:{{ data.contact.email }}" style="color: var(--secondary); text-decoration: none;">{{ data.contact.email }}</a> | 
+            <a href="{{ data.contact.linkedin }}" style="color: var(--secondary); text-decoration: none;">LinkedIn</a> | 
+            <a href="{{ data.contact.github }}" style="color: var(--secondary); text-decoration: none;">GitHub</a> | 
+            <a href="{{ data.contact.portfolio }}" style="color: var(--secondary); text-decoration: none;">Portfolio</a>
         </div>
     </div>
 
@@ -158,7 +161,14 @@
         <h2>Proyectos Destacados</h2>
         {% for p in data.projects %}
         <div class="project-item">
-            <div style="font-weight: bold; color: var(--primary);">{{ p.name }} <small>({{ p.tech_stack }})</small></div>
+            <div style="font-weight: bold; color: var(--primary);">
+                {% if p.url %}
+                <a href="{{ p.url }}" style="color: var(--accent); text-decoration: none;">{{ p.name }}</a>
+                {% else %}
+                {{ p.name }}
+                {% endif %}
+                <small>({{ p.tech_stack }})</small>
+            </div>
             <div style="font-size: 14px;">{{ p.description }}</div>
         </div>
         {% endfor %}
@@ -167,9 +177,21 @@
     <section>
         <h2>Educación</h2>
         {% for ed in data.education %}
-        <div style="display: flex; justify-content: space-between;">
-            <span>{{ ed.degree }} - {{ ed.institution }}</span>
-            <span>{{ ed.year }}</span>
+        <div style="margin-bottom: 15px;">
+            <div style="display: flex; justify-content: space-between; font-weight: bold;">
+                <span>{{ ed.degree }} - {{ ed.institution }}</span>
+                <span>{{ ed.year }}</span>
+            </div>
+            {% if ed.description %}
+            <div style="font-size: 13px; margin: 5px 0;">{{ ed.description }}</div>
+            {% endif %}
+            {% if ed.hard_skills %}
+            <div style="margin-top: 5px;">
+                {% for s in ed.hard_skills %}
+                <span class="tag" style="font-size: 10px; background: #eee;">{{ s }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
         </div>
         {% endfor %}
     </section>

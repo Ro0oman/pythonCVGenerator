@@ -12,34 +12,43 @@ class CVOptimizer:
         
     async def optimize_cv(self, job_description, original_cv, github_projects, portfolio_url):
         """
-        Generates a structured JSON with the optimized CV content.
-        Strategically repositioned for Fullstack PHP/Laravel roles (Nivel Top).
+        Generates a structured JSON with the optimized CV content (V4: No Hallucinations).
         """
-        system_prompt = """
-        Eres un Experto en Reclutamiento Tech con visión estratégica "Nivel Top". 
-        Tu objetivo es transformar el CV para que el candidato parezca un ANALISTA PROGRAMADOR FULLSTACK PHP/LARAVEL nativo.
+        system_prompt = f"""
+        Eres un Experto en Reclutamiento Tech con una política de "CERO ALUCINACIONES". 
+        Tu objetivo es transformar el CV para que el candidato sea el ANALISTA PROGRAMADOR FULLSTACK PHP/LARAVEL + VUE ideal, pero basándote ÚNICAMENTE en datos reales proporcionados.
         
-        REGLAS CRÍTICAS DE REPOSICIONAMIENTO:
-        1. Corrección de Datos: El email DEBE ser "romainot99@gmail.com" (corrige cualquier error de "gmai.com").
-        2. Resumen: "Fullstack Developer con +3 años de experiencia en desarrollo web con PHP (Laravel) y Vue.js, especializado en aplicaciones escalables y APIs REST. Experiencia adicional en Python para automatización."
-        3. Experiencia (TESI): Usa el bullet: "Desarrollo Fullstack con PHP (Laravel) y Vue.js en una plataforma de alto tráfico (+1M usuarios)". Añade análisis de requisitos y diseño de soluciones.
-        4. Experiencia (Infoverity): Enfoca el backend como "Diseño de APIs REST consumidas por aplicaciones frontend, facilitando la integración Fullstack".
-        5. Persona Analista: Inyecta bullets sobre "Diseño de arquitectura escalable" y "Análisis técnico de requisitos".
-        6. Proyectos: El proyecto PHP/Laravel debe destacar "Implementación de Autenticación, CRUDs avanzados y Gestión de Usuarios".
-        7. Soft Skills: Añade "Code Reviews" y "Mejores prácticas" dentro del entorno Scrum.
+        REGLAS CRÍTICAS (NIVEL TOP):
+        1. NO INVENTES PROYECTOS: Usa exclusivamente los repositorios listados en el input de GitHub. Si un proyecto no está ahí, NO lo menciones.
+        2. Email: DEBE ser "romainot99@gmail.com".
+        3. Educación: Para cada curso/grado, describe brevemente qué se hizo/aprendió y añade una lista de 'hard_skills' específicas obtenidas.
+        4. Resumen: "Fullstack Developer con +3 años de experiencia en desarrollo web con PHP (Laravel) y Vue.js, especializado en aplicaciones escalables y APIs REST. Experiencia adicional en Python para automatización."
+        5. Experiencia: Prioriza PHP/Laravel/Vue y evidencias de Scrum/Teamwork (con Code Reviews) basándote en su historial real de TESI e Infoverity.
+        6. Proyectos Reales: Describe los repos descriptos en el input de forma que resalten las tecnologías demandadas (PHP/Laravel/Vue/Python).
         
-        IMPORTANTE: Devuelve la respuesta ÚNICAMENTE en formato JSON válido con la siguiente estructura:
-        {
+        IMPORTANTE: Devuelve la respuesta ÚNICAMENTE en formato JSON válido:
+        {{
             "full_name": "Nombre Completo",
-            "contact": {"email": "romainot99@gmail.com", "linkedin": "", "github": "", "portfolio": ""},
+            "contact": {{"email": "romainot99@gmail.com", "linkedin": "", "github": "", "portfolio": ""}},
             "summary": "Resumen profesional nivel top enfocado en Fullstack PHP/Laravel + Vue.js",
             "experience": [
-                {"company": "Nombre", "role": "Analista Programador Fullstack", "period": "Fechas", "achievements": ["Logros con keywords PHP/Laravel/Vue/Scrum", "Evidencia de análisis y diseño"]}
+                {{"company": "Nombre", "role": "Analista Programador Fullstack", "period": "Fechas", "achievements": ["Logros con keywords PHP/Laravel/Vue/Scrum", "Evidencia de análisis y diseño"]}}
             ],
-            "skills": {"hard": ["PHP (Laravel)", "Vue.js", "MySQL", "APIs REST", "Docker", "Python (Optimization)"], "soft": ["Trabajo en Equipo (Scrum & Code Reviews)", "Análisis Técnico", "Resolución de Problemas"]},
-            "projects": [{"name": "Nombre", "tech_stack": "Stack", "url": "URL", "description": "Descripción funcional/empresarial activa"}],
-            "education": [{"degree": "Grado", "institution": "Univ", "year": "Año", "description": "Lo aprendido enfocado al rol"}]
-        }
+            "skills": {{"hard": ["PHP (Laravel)", "Vue.js", "MySQL", "APIs REST", "Docker", "Python"], "soft": ["Trabajo en Equipo (Scrum & Code Reviews)", "Análisis Técnico"]}},
+            "projects": [{{
+                "name": "Nombre del repo real", 
+                "tech_stack": "Stack real", 
+                "url": "URL real de GitHub", 
+                "description": "Descripción adaptada a la oferta basada en el README real"
+            }}],
+            "education": [{{
+                "degree": "Grado", 
+                "institution": "Univ", 
+                "year": "Año", 
+                "description": "Qué se hizo en el curso",
+                "hard_skills": ["Skill 1", "Skill 2"]
+            }}]
+        }}
         """
         
         prompt = f"""
