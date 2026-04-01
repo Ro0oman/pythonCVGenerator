@@ -3,7 +3,7 @@ google-generativeai
 openai
 anthropic
 python-dotenv
-pydf2
+PyPDF2
 jinja2
 beautifulsoup4
 requests
