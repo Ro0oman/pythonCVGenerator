@@ -53,3 +53,12 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
+
+# 1. Cargar Configuración
+# 2. Ingesta (PDF + GitHub)
+# 3. Extracción (Identidad + Perfiles)
+# 4. Enriquecimiento (Datos de GitHub)
+# 5. Optimización (CV + Carta)
+# 6. Renderizado (PDFs)
+# 7. Reporte (Costes + Recomendaciones)
