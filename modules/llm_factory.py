@@ -12,6 +12,10 @@ class LLMFactory:
     Ensures a consistent interface for the application.
     """
     
+    @staticmethod
+    def get_provider(provider="gemini"):
+        return LLMFactory(provider)
+
     def __init__(self, provider="gemini"):
         self.provider = provider.lower()
         self.model = None
@@ -32,17 +36,13 @@ class LLMFactory:
             if not api_key: raise ValueError("ANTHROPIC_API_KEY no encontrada")
             self.client = anthropic.Anthropic(api_key=api_key)
             
-    async def generate_response(self, prompt: str, system_instruction: str = ""):
+    async def generate(self, system_instruction: str, prompt: str):
         """
         Sends a prompt to the selected LLM and returns the response.
         """
         if self.provider == "gemini":
-            # Gemini handles system instructions in the model config
-            if system_instruction:
-                # We combine for simplicity in this implementation
-                full_prompt = f"{system_instruction}\n\n{prompt}"
-            else:
-                full_prompt = prompt
+            # Gemini handles system instructions in the model config or combined
+            full_prompt = f"{system_instruction}\n\n{prompt}"
             response = await self.model.generate_content_async(full_prompt)
             return response.text
             

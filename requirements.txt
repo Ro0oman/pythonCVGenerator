@@ -8,3 +8,5 @@ jinja2
 beautifulsoup4
 requests
 python-slugify
+pydantic
+pydantic-settings

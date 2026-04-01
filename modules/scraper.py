@@ -1,12 +1,46 @@
 import asyncio
 from playwright.async_api import async_playwright
 import random
+import json
+import os
+import hashlib
+
+CACHE_DIR = ".cache"
+CACHE_FILE = os.path.join(CACHE_DIR, "job_cache.json")
+
+def get_cache_key(url):
+    return hashlib.md5(url.encode()).hexdigest()
+
+def get_cached_job(url):
+    if not os.path.exists(CACHE_FILE):
+        return None
+    with open(CACHE_FILE, "r", encoding="utf-8") as f:
+        cache = json.load(f)
+        return cache.get(get_cache_key(url))
+
+def save_to_cache(url, data):
+    if not os.path.exists(CACHE_DIR):
+        os.makedirs(CACHE_DIR)
+    
+    cache = {}
+    if os.path.exists(CACHE_FILE):
+        with open(CACHE_FILE, "r", encoding="utf-8") as f:
+            cache = json.load(f)
+            
+    cache[get_cache_key(url)] = data
+    with open(CACHE_FILE, "w", encoding="utf-8") as f:
+        json.dump(cache, f, indent=4)
 
 async def scrape_job_offer(url: str):
     """
     Scrapes a job offer from a given URL using Playwright.
-    Handles dynamic content and implements human-like delays.
+    Includes persistent caching to save tokens and time.
     """
+    cached = get_cached_job(url)
+    if cached:
+        print(f"[*] Usando oferta desde caché para: {url}")
+        return cached
+
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
         # Use a realistic User-Agent
@@ -41,10 +75,12 @@ async def scrape_job_offer(url: str):
             
             title = await page.title()
             
-            return {
+            result = {
                 "title": title,
                 "content": content[:10000] # Limit content for LLM safety
             }
+            save_to_cache(url, result)
+            return result
             
         except Exception as e:
             print(f"[!] Error al scrapper: {e}")
