@@ -1,8 +1,8 @@
 {
-  "job_url": "https://www.linkedin.com/jobs/view/123456/",
-  "portfolio_url": "https://tu-portfolio.dev",
-  "github_url": "https://github.com/tu-usuario",
-  "linkedin_url": "https://linkedin.com/in/tu-perfil",
-  "generate_cover_letter": true,
+  "job_url": "https://www.infojobs.net/madrid/desarrollador-python/of-if202e1811a45f28a60b1f3c3544160?applicationOrigin=search-new%7Celement%7E58916276566&searchId=58916276566&page=1&sortBy=RELEVANCE",
+  "portfolio_url": "https://roman-myziuk-portfolio.vercel.app/",
+  "github_url": "https://github.com/Ro0oman",
+  "linkedin_url": "https://www.linkedin.com/in/roman-myziuk/",
+  "generate_cover_letter": false,
   "llm_provider": "gemini"
 }

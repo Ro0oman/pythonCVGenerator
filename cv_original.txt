@@ -1,0 +1,14 @@
+Roman Myziuk
+Fullstack Developer
+Email: roman.myziuk@example.com
+LinkedIn: https://www.linkedin.com/in/roman-myziuk/
+GitHub: https://github.com/Ro0oman
+
+Experiencia:
+- Desarrollador PHP/Laravel en TechSolutions (2021-2023)
+  * Desarrollé APIs REST con Laravel.
+  * Optimicé bases de datos MySQL.
+  * Implementé interfaces con Vue.js.
+
+Skills: PHP, Laravel, MySQL, JavaScript, Vue.js, Git, Docker.
+Educación: Ingeniería Informática.

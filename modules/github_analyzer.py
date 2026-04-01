@@ -12,7 +12,7 @@ def get_recent_github_repos(github_url: str, limit: int = 3):
     
     headers = {}
     token = os.getenv("GITHUB_TOKEN")
-    if token:
+    if token and token != "your_github_token":
         headers["Authorization"] = f"token {token}"
         
     print(f"[*] Analizando GitHub de: {github_user}")

@@ -20,7 +20,7 @@ class LLMFactory:
             api_key = os.getenv("GEMINI_API_KEY")
             if not api_key: raise ValueError("GEMINI_API_KEY no encontrada")
             genai.configure(api_key=api_key)
-            self.model = genai.GenerativeModel('gemini-1.5-pro')
+            self.model = genai.GenerativeModel('gemini-flash-latest')
             
         elif self.provider == "openai":
             api_key = os.getenv("OPENAI_API_KEY")

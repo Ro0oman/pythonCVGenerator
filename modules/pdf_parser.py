@@ -1,4 +1,4 @@
-from pypdf2 import PdfReader
+from PyPDF2 import PdfReader
 import os
 
 def parse_cv(cv_path: str):
