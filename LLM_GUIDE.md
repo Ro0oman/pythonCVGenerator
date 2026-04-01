@@ -51,5 +51,26 @@ Soporte de respaldo (Fallback) por si Gemini falla.
 
 ---
 
+## 🎨 Cómo Retocar tu CV (Modo Senior) 🖐️
+A veces la IA no elige las palabras exactas que tú usarías. Para esos casos, hemos creado el **Modo Retoque**.
+
+### Paso 1: Genera el CV normalmente
+Ejecuta el script como siempre. Al terminar, verás un mensaje que dice:
+`✍️ Archivo de retoque guardado: output/.../resume_to_retouch.json`
+
+### Paso 2: Edita el contenido a tu gusto
+1. Abre ese archivo `.json` con cualquier editor de texto (Notepad, VS Code).
+2. Busca la sección `"optimized_data"` y cambia lo que quieras: el resumen, los bullets de experiencia o tus habilidades.
+3. Guarda el archivo.
+
+### Paso 3: Re-genera el PDF instantáneamente
+Ejecuta el comando especial de renderizado:
+```bash
+python main.py --mode render --data output/tu_carpeta/resume_to_retouch.json
+```
+**¡Listo!** El PDF se generará en milisegundos con tus cambios manuales, sin gastar dinero en la API ni esperar a la IA.
+
+---
+
 > [!TIP]
 > **Recomendación Senior**: Usa **Gemini** para generar tu CV inicial y **Llama 3.2 (Local)** para hacer iteraciones rápidas o retoques privados sin preocuparte por los tokens.

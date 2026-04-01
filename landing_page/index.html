@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATS-Master CV Generator Pro | El Futuro del Reclutamiento Tech</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: '#050505',
+                        accent: {
+                            cyan: '#00F5FF',
+                            purple: '#A855F7',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .text-gradient {
+            background: linear-gradient(90deg, #00F5FF, #A855F7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-bg {
+            background-image: url('assets/hero.png');
+            background-size: cover;
+            background-position: center;
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body class="bg-dark text-gray-100 font-sans selection:bg-accent-cyan selection:text-dark">
+
+    <!-- Header / Nav -->
+    <nav class="fixed top-0 w-full z-50 glass border-b border-white/5 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-gradient-to-tr from-accent-cyan to-accent-purple rounded-lg flex items-center justify-center">
+                    <i data-lucide="zap" class="text-white w-5 h-5"></i>
+                </div>
+                <span class="font-bold text-xl tracking-tight">ATS-Master <span class="text-accent-cyan">Pro</span></span>
+            </div>
+            <div class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
+                <a href="#features" class="hover:text-accent-cyan transition">Funciones</a>
+                <a href="#how-it-works" class="hover:text-accent-cyan transition">Cómo funciona</a>
+                <a href="https://github.com/Ro0oman/pythonCVGenerator" target="_blank" class="hover:text-accent-cyan transition flex items-center gap-1">
+                    GitHub <i data-lucide="external-link" class="w-3 h-3"></i>
+                </a>
+            </div>
+            <a href="https://github.com/Ro0oman/pythonCVGenerator/archive/refs/heads/main.zip" class="bg-white text-dark px-4 py-2 rounded-full text-sm font-bold hover:bg-accent-cyan transition-all transform hover:scale-105">
+                Download ZIP
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <div class="absolute inset-0 hero-bg opacity-30"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-dark/0 via-dark/50 to-dark"></div>
+        
+        <div class="relative max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-cyan/10 border border-accent-cyan/20 text-accent-cyan text-xs font-bold mb-6">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-cyan opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-accent-cyan"></span>
+                    </span>
+                    VERSIÓN 7.0 DISPONIBLE
+                </div>
+                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6">
+                    Tu carrera tech, <br>
+                    <span class="text-gradient">Rediseñada por IA.</span>
+                </h1>
+                <p class="text-lg text-gray-400 mb-10 max-w-lg leading-relaxed">
+                    El generador de CVs de grado industrial que combina la potencia de la nube con la privacidad de tu PC. Optimizado para filtros ATS yManagers Técnicos.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="https://github.com/Ro0oman/pythonCVGenerator" class="px-8 py-4 bg-gradient-to-r from-accent-cyan to-accent-purple rounded-xl font-bold text-center hover:shadow-[0_0_20px_rgba(0,245,255,0.4)] transition-all">
+                        Ver Código en GitHub
+                    </a>
+                    <a href="#features" class="px-8 py-4 glass rounded-xl font-bold text-center hover:bg-white/10 transition">
+                        Ver Funcionalidades
+                    </a>
+                </div>
+            </div>
+            <div class="hidden md:block relative">
+                <div class="glass p-8 rounded-3xl animate-float relative z-10">
+                    <pre class="text-xs text-accent-cyan font-mono leading-6">
+<span class="text-gray-500">[*]</span> Running Hybrid Pipeline...
+<span class="text-gray-500">[*]</span> Using LLM: <span class="text-white">llama3.2 (LOCAL)</span>
+<span class="text-gray-500">[*]</span> Scraping Job Context...
+<span class="text-gray-500">[*]</span> Optimizing for <span class="text-accent-purple">Senior Fullstack</span>
+<span class="text-gray-500">[+]</span> CV Density: <span class="text-white">Senior narrative achieved</span>
+<span class="text-gray-500">[+]</span> Output: <span class="text-white">CV-Roman-Myziuk.pdf</span>
+
+<span class="text-accent-purple">Success:</span> Hireable state 100%
+                    </pre>
+                </div>
+                <div class="absolute -top-10 -right-10 w-64 h-64 bg-accent-purple/20 blur-3xl rounded-full"></div>
+                <div class="absolute -bottom-10 -left-10 w-64 h-64 bg-accent-cyan/20 blur-3xl rounded-full"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 bg-dark relative z-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">Arquitectura de Próxima Generación</h2>
+                <p class="text-gray-400">Diseñado para la privacidad, el rendimiento y el éxito profesional.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="glass p-8 rounded-3xl hover:border-accent-cyan/40 transition group">
+                    <div class="w-12 h-12 bg-accent-cyan/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                        <i data-lucide="shield-check" class="text-accent-cyan"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">100% Privacidad Local</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        Soporte nativo para **Ollama (Llama 3.2 / Gemma 3)**. Tus datos personales como email o teléfono nunca salen de tu máquina.
+                    </p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="glass p-8 rounded-3xl hover:border-accent-purple/40 transition group">
+                    <div class="w-12 h-12 bg-accent-purple/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                        <i data-lucide="cpu" class="text-accent-purple"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Arquitectura Híbrida</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        Lo mejor de ambos mundos. Usa la potencia de **Google Gemini** para narrativa compleja y cambia a local para iteraciones rápidas.
+                    </p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="glass p-8 rounded-3xl hover:border-accent-cyan/40 transition group">
+                    <div class="w-12 h-12 bg-accent-cyan/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                        <i data-lucide="edit-3" class="text-accent-cyan"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Modo Retoque (V7)</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        Edición "Human-in-the-Loop". El sistema genera un JSON intermedio que puedes editar antes del renderizado final del PDF.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section id="how-it-works" class="py-24 glass border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h2 class="text-4xl font-bold mb-8 italic">Zero-Config, High-Impact.</h2>
+                <div class="space-y-8">
+                    <div class="flex gap-6">
+                        <div class="flex-shrink-0 w-8 h-8 rounded-full border border-accent-cyan flex items-center justify-center font-bold text-accent-cyan">1</div>
+                        <div>
+                            <h4 class="font-bold mb-1">Ingesta Inteligente</h4>
+                            <p class="text-sm text-gray-400">Pegas la URL de InfoJobs o LinkedIn y el sistema extrae el contexto técnico automáticamente.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="flex-shrink-0 w-8 h-8 rounded-full border border-accent-purple flex items-center justify-center font-bold text-accent-purple">2</div>
+                        <div>
+                            <h4 class="font-bold mb-1">Enriquecimiento de GitHub</h4>
+                            <p class="text-sm text-gray-400">El Pipeline analiza tus repositorios reales para inyectar evidencias técnicas en tu trayectoria.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="flex-shrink-0 w-8 h-8 rounded-full border border-accent-cyan flex items-center justify-center font-bold text-accent-cyan">3</div>
+                        <div>
+                            <h4 class="font-bold mb-1">Generación Senior</h4>
+                            <p class="text-sm text-gray-400">Nuestro motor de narrativa (Acción + Resultado) transforma tus tareas básicas en logros de alto valor.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white/5 rounded-3xl p-2 border border-white/10">
+                <div class="bg-dark rounded-2xl p-6 border border-white/5">
+                    <div class="flex justify-between items-center mb-6">
+                        <div class="flex gap-2">
+                            <div class="w-3 h-3 rounded-full bg-red-500/20"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500/20"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500/20"></div>
+                        </div>
+                        <span class="text-[10px] text-gray-500 font-mono">data.json</span>
+                    </div>
+                    <div class="font-mono text-xs text-gray-500 space-y-2">
+                        <p class="text-accent-cyan">{</p>
+                        <p class="pl-4">"llm_provider": <span class="text-white">"ollama"</span>,</p>
+                        <p class="pl-4">"model_name": <span class="text-white">"llama3.2"</span>,</p>
+                        <p class="pl-4">"generate_cover_letter": <span class="text-accent-purple">true</span></p>
+                        <p class="text-accent-cyan">}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-32 text-center">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-5xl font-bold mb-10">Lleva tu empleabilidad al siguiente nivel.</h2>
+            <p class="text-xl text-gray-400 mb-12 leading-relaxed">
+                Descarga el proyecto, configura tu IA preferida y genera currículums profesionales en segundos. 100% Open Source.
+            </p>
+            <div class="flex justify-center gap-6">
+                <a href="https://github.com/Ro0oman/pythonCVGenerator" class="px-10 py-5 bg-white text-dark rounded-2xl font-bold text-lg hover:bg-accent-cyan transition transform hover:scale-105">
+                    Clonar Repositorio
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/5 text-center text-gray-500 text-sm">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p>© 2026 Developed by <span class="text-white font-bold">Roman Myziuk</span>. Open Source MIT License.</p>
+            <div class="flex gap-6">
+                <a href="https://github.com/Ro0oman/pythonCVGenerator" class="hover:text-white transition">Github</a>
+                <a href="https://linkedin.com/in/roman-myziuk" class="hover:text-white transition">LinkedIn</a>
+                <a href="https://romanmyziuk.com/" class="hover:text-white transition">Portfolio</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
