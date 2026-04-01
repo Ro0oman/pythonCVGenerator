@@ -103,13 +103,17 @@
             </div>
             <div class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
                 <a href="docs.html" class="hover:text-accent-cyan transition font-bold text-white underline decoration-accent-cyan decoration-2 underline-offset-4">Docs</a>
-                <a href="#features" class="hover:text-accent-cyan transition">Funciones</a>
-                <a href="#how-it-works" class="hover:text-accent-cyan transition">Cómo funciona</a>
+                <a href="#features" class="hover:text-accent-cyan transition" data-i18n="nav-features">Funciones</a>
+                <a href="#how-it-works" class="hover:text-accent-cyan transition" data-i18n="nav-how">Cómo funciona</a>
                 <a href="https://github.com/Ro0oman/pythonCVGenerator" target="_blank" class="hover:text-accent-cyan transition flex items-center gap-1">
                     GitHub <i data-lucide="external-link" class="w-3 h-3"></i>
                 </a>
             </div>
             <div class="flex items-center gap-4">
+                <button id="lang-toggle" onclick="toggleLanguage()" class="glass px-3 py-1.5 rounded-lg text-xs font-bold hover:text-accent-cyan transition flex items-center gap-2">
+                    <i data-lucide="languages" class="w-4 h-4"></i>
+                    <span id="current-lang-label">ES</span>
+                </button>
                 <iframe src="https://ghbtns.com/github-btn.html?user=Ro0oman&repo=pythonCVGenerator&type=star&count=true&size=large" frameborder="0" scrolling="0" width="170" height="30" title="GitHub"></iframe>
                 <a href="https://github.com/Ro0oman/pythonCVGenerator/archive/refs/heads/main.zip" class="bg-white text-dark px-4 py-2 rounded-full text-sm font-bold hover:bg-accent-cyan transition-all transform hover:scale-105">
                     Download ZIP
@@ -130,20 +134,20 @@
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-cyan opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-2 w-2 bg-accent-cyan"></span>
                     </span>
-                    VERSIÓN 7.0 DISPONIBLE
+                    <span data-i18n="hero-version">VERSIÓN 7.0 DISPONIBLE</span>
                 </div>
                 <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6">
-                    Consigue el Sí: <br>
-                    <span class="text-gradient">El CV perfecto para cada oferta.</span>
+                    <span data-i18n="hero-title-1">Consigue el Sí:</span> <br>
+                    <span class="text-gradient" data-i18n="hero-title-2">El CV perfecto para cada oferta.</span>
                 </h1>
-                <p class="text-lg text-gray-400 mb-10 max-w-lg leading-relaxed">
+                <p class="text-lg text-gray-400 mb-10 max-w-lg leading-relaxed" data-i18n="hero-desc">
                     Si te inscribes a 20 ofertas, necesitas 20 CVs diferentes. El generador que adapta tu perfil automáticamente para pasar cualquier filtro ATS y convencer a los managers.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="https://github.com/Ro0oman/pythonCVGenerator" class="px-8 py-4 bg-gradient-to-r from-accent-cyan to-accent-purple rounded-xl font-bold text-center hover:shadow-[0_0_20px_rgba(0,245,255,0.4)] transition-all">
+                    <a href="https://github.com/Ro0oman/pythonCVGenerator" class="px-8 py-4 bg-gradient-to-r from-accent-cyan to-accent-purple rounded-xl font-bold text-center hover:shadow-[0_0_20px_rgba(0,245,255,0.4)] transition-all" data-i18n="hero-cta-github">
                         Ver Código en GitHub
                     </a>
-                    <a href="#features" class="px-8 py-4 glass rounded-xl font-bold text-center hover:bg-white/10 transition">
+                    <a href="#features" class="px-8 py-4 glass rounded-xl font-bold text-center hover:bg-white/10 transition" data-i18n="hero-cta-features">
                         Ver Funcionalidades
                     </a>
                 </div>
@@ -178,28 +182,28 @@
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <div>
                         <h2 class="text-4xl font-extrabold mb-8 leading-tight">
-                            ¿Por qué no te <span class="text-accent-cyan">llaman</span>?
+                            <span data-i18n="strat-title">¿Por qué no te </span><span class="text-accent-cyan" data-i18n="strat-title-span">llaman</span>?
                         </h2>
                         <div class="space-y-6 text-gray-400 text-lg leading-relaxed">
-                            <p>
+                            <p data-i18n="strat-p1">
                                 Usar el mismo currículum para todo es un error que te deja fuera de procesos. El reclutador busca palabras clave específicas y tú necesitas **hablar su idioma**.
                             </p>
-                            <p class="border-l-4 border-accent-purple pl-6 italic bg-white/5 py-4 rounded-r-xl">
+                            <p class="border-l-4 border-accent-purple pl-6 italic bg-white/5 py-4 rounded-r-xl" data-i18n="strat-quote">
                                 "Tengo talento, ¿por qué no paso de fase? La respuesta suele ser que tu CV es demasiado genérico para la oferta."
                             </p>
-                            <p>
+                            <p data-i18n="strat-p2">
                                 La estrategia ganadora es personalizar tu CV para **cada empresa** a la que aplicas. Es pesado, es aburrido... pero ATS-Master Pro lo hace en segundos por ti.
                             </p>
                         </div>
                     </div>
                     <div class="space-y-6">
                         <div class="glass p-6 rounded-2xl border-l-4 border-accent-cyan">
-                            <h4 class="font-bold text-white mb-2">El Problema: La Brecha de Oportunidad</h4>
-                            <p class="text-sm text-gray-500">Gente con talento queda fuera porque su CV no está "mapeado" a los keywords del reclutador.</p>
+                            <h4 class="font-bold text-white mb-2" data-i18n="prob-title">El Problema: La Brecha de Oportunidad</h4>
+                            <p class="text-sm text-gray-500" data-i18n="prob-desc">Gente con talento queda fuera porque su CV no está "mapeado" a los keywords del reclutador.</p>
                         </div>
                         <div class="glass p-6 rounded-2xl border-l-4 border-accent-purple">
-                            <h4 class="font-bold text-white mb-2">La Solución: Hiper-Personalización Automática</h4>
-                            <p class="text-sm text-gray-500">Nuestra IA adapta tu narrativa para cada oferta específica, asegurando que tus capacidades se conviertan en entrevistas.</p>
+                            <h4 class="font-bold text-white mb-2" data-i18n="sol-title">La Solución: Hiper-Personalización Automática</h4>
+                            <p class="text-sm text-gray-500" data-i18n="sol-desc">Nuestra IA adapta tu narrativa para cada oferta específica, asegurando que tus capacidades se conviertan en entrevistas.</p>
                         </div>
                     </div>
                 </div>
@@ -209,8 +213,8 @@
     <section id="features" class="py-24 bg-dark relative z-10">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-20">
-                <h2 class="text-3xl md:text-5xl font-bold mb-4">Lo que de verdad importa</h2>
-                <p class="text-gray-400">Todo lo que necesitas para que tu búsqueda sea un paseo.</p>
+                <h2 class="text-3xl md:text-5xl font-bold mb-4" data-i18n="feat-head">Lo que de verdad importa</h2>
+                <p class="text-gray-400" data-i18n="feat-sub">Todo lo que necesitas para que tu búsqueda sea un paseo.</p>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8">
@@ -219,8 +223,8 @@
                     <div class="w-12 h-12 bg-accent-cyan/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
                         <i data-lucide="shield-check" class="text-accent-cyan"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Privado y Seguro</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">
+                    <h3 class="text-xl font-bold mb-4" data-i18n="feat-1-title">Privado y Seguro</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed" data-i18n="feat-1-desc">
                         Tus datos personales nunca salen de tu PC si usas IA local. Puedes dormir tranquilo sabiendo que tu email o teléfono son tuyos y de nadie más.
                     </p>
                 </div>
@@ -229,8 +233,8 @@
                     <div class="w-12 h-12 bg-accent-purple/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
                         <i data-lucide="cpu" class="text-accent-purple"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Escala tu Búsqueda</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">
+                    <h3 class="text-xl font-bold mb-4" data-i18n="feat-2-title">Escala tu Búsqueda</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed" data-i18n="feat-2-desc">
                         ¿Has visto 20 ofertas interesantes? Pon las 20 URLs en el config y el sistema generará 20 CVs únicos en una sola pasada. Ahorra horas de trabajo repetitivo.
                     </p>
                 </div>
@@ -239,8 +243,8 @@
                     <div class="w-12 h-12 bg-accent-cyan/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
                         <i data-lucide="edit-3" class="text-accent-cyan"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Ponlo a tu Gusto</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">
+                    <h3 class="text-xl font-bold mb-4" data-i18n="feat-3-title">Ponlo a tu Gusto</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed" data-i18n="feat-3-desc">
                         La IA hace el 90% del trabajo duro, pero tú puedes retocar los detalles finales con un JSON intermedio antes de generar el PDF definitivo.
                     </p>
                 </div>
@@ -251,7 +255,7 @@
     <!-- X Offers -> X CVs Section -->
     <section class="py-24 relative overflow-hidden bg-white/5">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-3xl md:text-5xl font-bold mb-16">Escala tu búsqueda sin esfuerzo</h2>
+            <h2 class="text-3xl md:text-5xl font-bold mb-16" data-i18n="scale-title">Escala tu búsqueda sin esfuerzo</h2>
             
             <div class="grid md:grid-cols-3 gap-12 items-center">
                 <div class="space-y-6">
@@ -259,7 +263,7 @@
                         <i data-lucide="briefcase" class="w-12 h-12 text-accent-cyan mx-auto"></i>
                     </div>
                     <div class="text-4xl font-black text-white">50+</div>
-                    <p class="text-gray-400">Ofertas que te interesan cada semana</p>
+                    <p class="text-gray-400" data-i18n="scale-1-desc">Ofertas que te interesan cada semana</p>
                 </div>
                 
                 <div class="relative py-12 md:py-0">
@@ -267,7 +271,7 @@
                     <div class="relative z-10 w-20 h-20 bg-dark border-2 border-accent-purple rounded-full flex items-center justify-center mx-auto animate-pulse">
                         <i data-lucide="sparkles" class="w-10 h-10 text-accent-purple"></i>
                     </div>
-                    <p class="mt-6 font-bold text-accent-purple uppercase tracking-widest text-sm">Procesado por IA</p>
+                    <p class="mt-6 font-bold text-accent-purple uppercase tracking-widest text-sm" data-i18n="scale-process">Procesado por IA</p>
                 </div>
                 
                 <div class="space-y-6">
@@ -275,12 +279,12 @@
                         <i data-lucide="file-text" class="w-12 h-12 text-accent-purple mx-auto"></i>
                     </div>
                     <div class="text-4xl font-black text-white">50+</div>
-                    <p class="text-gray-400">CVs únicos generados al momento</p>
+                    <p class="text-gray-400" data-i18n="scale-2-desc">CVs únicos generados al momento</p>
                 </div>
             </div>
 
             <div class="mt-20 p-8 glass rounded-[32px] max-w-3xl mx-auto border-accent-cyan/10">
-                <p class="text-xl text-gray-300 italic">
+                <p class="text-xl text-gray-300 italic" data-i18n="scale-quote">
                     "Tantas ofertas como quieras, tantos CVs como necesites. **Personalización masiva** en un solo click."
                 </p>
             </div>
@@ -291,27 +295,27 @@
     <section id="how-it-works" class="py-24 glass border-y border-white/5">
         <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
             <div>
-                <h2 class="text-4xl font-bold mb-8 italic">Zero-Config, High-Impact.</h2>
+                <h2 class="text-4xl font-bold mb-8 italic" data-i18n="how-head">Zero-Config, High-Impact.</h2>
                 <div class="space-y-8">
                     <div class="flex gap-6">
                         <div class="flex-shrink-0 w-8 h-8 rounded-full border border-accent-cyan flex items-center justify-center font-bold text-accent-cyan">1</div>
                         <div>
-                            <h4 class="font-bold mb-1">Ingesta Inteligente</h4>
-                            <p class="text-sm text-gray-400">Pegas la URL de InfoJobs o LinkedIn y el sistema extrae el contexto técnico automáticamente.</p>
+                            <h4 class="font-bold mb-1" data-i18n="step-1-title">Ingesta Inteligente</h4>
+                            <p class="text-sm text-gray-400" data-i18n="step-1-desc">Pegas la URL de InfoJobs o LinkedIn y el sistema extrae el contexto técnico automáticamente.</p>
                         </div>
                     </div>
                     <div class="flex gap-6">
                         <div class="flex-shrink-0 w-8 h-8 rounded-full border border-accent-purple flex items-center justify-center font-bold text-accent-purple">2</div>
                         <div>
-                            <h4 class="font-bold mb-1">Enriquecimiento de GitHub</h4>
-                            <p class="text-sm text-gray-400">El Pipeline analiza tus repositorios reales para inyectar evidencias técnicas en tu trayectoria.</p>
+                            <h4 class="font-bold mb-1" data-i18n="step-2-title">Enriquecimiento de GitHub</h4>
+                            <p class="text-sm text-gray-400" data-i18n="step-2-desc">El Pipeline analiza tus repositorios reales para inyectar evidencias técnicas en tu trayectoria.</p>
                         </div>
                     </div>
                     <div class="flex gap-6">
                         <div class="flex-shrink-0 w-8 h-8 rounded-full border border-accent-cyan flex items-center justify-center font-bold text-accent-cyan">3</div>
                         <div>
-                            <h4 class="font-bold mb-1">Generación Senior</h4>
-                            <p class="text-sm text-gray-400">Nuestro motor de narrativa (Acción + Resultado) transforma tus tareas básicas en logros de alto valor.</p>
+                            <h4 class="font-bold mb-1" data-i18n="step-3-title">Generación Senior</h4>
+                            <p class="text-sm text-gray-400" data-i18n="step-3-desc">Nuestro motor de narrativa (Acción + Resultado) transforma tus tareas básicas en logros de alto valor.</p>
                         </div>
                     </div>
                 </div>
@@ -344,12 +348,12 @@
     <section class="py-32 text-center relative overflow-hidden">
         <div class="absolute inset-0 bg-accent-cyan/5 -z-10"></div>
         <div class="max-w-4xl mx-auto px-6">
-            <h2 class="text-5xl font-bold mb-10">Deja de echar CVs a ciegas.</h2>
-            <p class="text-xl text-gray-400 mb-12 leading-relaxed">
+            <h2 class="text-5xl font-bold mb-10" data-i18n="final-title">Deja de echar CVs a ciegas.</h2>
+            <p class="text-xl text-gray-400 mb-12 leading-relaxed" data-i18n="final-desc">
                 Empieza a generar currículums que de verdad se lean. Configura tu IA en un minuto y toma el control de tu carrera tech ahora mismo.
             </p>
             <div class="flex justify-center gap-6">
-                <a href="https://github.com/Ro0oman/pythonCVGenerator" class="px-10 py-5 bg-white text-dark rounded-2xl font-bold text-lg hover:bg-accent-cyan transition transform hover:scale-105 shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+                <a href="https://github.com/Ro0oman/pythonCVGenerator" class="px-10 py-5 bg-white text-dark rounded-2xl font-bold text-lg hover:bg-accent-cyan transition transform hover:scale-105 shadow-[0_0_30px_rgba(255,255,255,0.2)]" data-i18n="final-cta">
                     Empezar Gratis en GitHub
                 </a>
             </div>
@@ -359,7 +363,7 @@
     <!-- Footer -->
     <footer class="py-12 border-t border-white/5 text-center text-gray-500 text-sm">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-            <p>© 2026 Developed by <span class="text-white font-bold">Roman Myziuk</span>. Open Source MIT License.</p>
+            <p><span data-i18n="footer-dev">© 2026 Desarrollado por </span><span class="text-white font-bold">Roman Myziuk</span><span data-i18n="footer-license">. Licencia Open Source MIT.</span></p>
             <div class="flex gap-6">
                 <a href="https://github.com/Ro0oman/pythonCVGenerator" class="hover:text-white transition">Github</a>
                 <a href="https://linkedin.com/in/roman-myziuk" class="hover:text-white transition">LinkedIn</a>
@@ -370,6 +374,119 @@
 
     <script>
         lucide.createIcons();
+
+        const translations = {
+            es: {
+                "nav-features": "Funciones",
+                "nav-how": "Cómo funciona",
+                "hero-version": "VERSIÓN 7.0 DISPONIBLE",
+                "hero-title-1": "Consigue el Sí:",
+                "hero-title-2": "El CV perfecto para cada oferta.",
+                "hero-desc": "Si te inscribes a 20 ofertas, necesitas 20 CVs diferentes. El generador que adapta tu perfil automáticamente para pasar cualquier filtro ATS y convencer a los managers.",
+                "hero-cta-github": "Ver Código en GitHub",
+                "hero-cta-features": "Ver Funcionalidades",
+                "strat-title": "¿Por qué no te ",
+                "strat-title-span": "llaman",
+                "strat-p1": "Usar el mismo currículum para todo es un error que te deja fuera de procesos. El reclutador busca palabras clave específicas y tú necesitas **hablar su idioma**.",
+                "strat-quote": "\"Tengo talento, ¿por qué no paso de fase? La respuesta suele ser que tu CV es demasiado genérico para la oferta.\"",
+                "strat-p2": "La estrategia ganadora es personalizar tu CV para **cada empresa** a la que aplicas. Es pesado, es aburrido... pero ATS-Master Pro lo hace en segundos por ti.",
+                "prob-title": "El Problema: La Brecha de Oportunidad",
+                "prob-desc": "Gente con talento queda fuera porque su CV no está \"mapeado\" a los keywords del reclutador.",
+                "sol-title": "La Solución: Hiper-Personalización Automática",
+                "sol-desc": "Nuestra IA adapta tu narrativa para cada oferta específica, asegurando que tus capacidades se conviertan en entrevistas.",
+                "feat-head": "Lo que de verdad importa",
+                "feat-sub": "Todo lo que necesitas para que tu búsqueda sea un paseo.",
+                "feat-1-title": "Privado y Seguro",
+                "feat-1-desc": "Tus datos personales nunca salen de tu PC si usas IA local. Puedes dormir tranquilo sabiendo que tu email o teléfono son tuyos y de nadie más.",
+                "feat-2-title": "Escala tu Búsqueda",
+                "feat-2-desc": "¿Has visto 20 ofertas interesantes? Pon las 20 URLs en el config y el sistema generará 20 CVs únicos en una sola pasada. Ahorra horas de trabajo repetitivo.",
+                "feat-3-title": "Ponlo a tu Gusto",
+                "feat-3-desc": "La IA hace el 90% del trabajo duro, pero tú puedes retocar los detalles finales con un JSON intermedio antes de generar el PDF definitivo.",
+                "scale-title": "Escala tu búsqueda sin esfuerzo",
+                "scale-1-desc": "Ofertas que te interesan cada semana",
+                "scale-process": "Procesado por IA",
+                "scale-2-desc": "CVs únicos generados al momento",
+                "scale-quote": "\"Tantas ofertas como quieras, tantos CVs como necesites. **Personalización masiva** en un solo click.\"",
+                "how-head": "Zero-Config, High-Impact.",
+                "step-1-title": "Ingesta Inteligente",
+                "step-1-desc": "Pegas la URL de InfoJobs o LinkedIn y el sistema extrae el contexto técnico automáticamente.",
+                "step-2-title": "Enriquecimiento de GitHub",
+                "step-2-desc": "El Pipeline analiza tus repositorios reales para inyectar evidencias técnicas en tu trayectoria.",
+                "step-3-title": "Generación Senior",
+                "step-3-desc": "Nuestro motor de narrativa (Acción + Resultado) transforma tus tareas básicas en logros de alto valor.",
+                "final-title": "Deja de echar CVs a ciegas.",
+                "final-desc": "Empieza a generar currículums que de verdad se lean. Configura tu IA en un minuto y toma el control de tu carrera tech ahora mismo.",
+                "final-cta": "Empezar Gratis en GitHub",
+                "footer-dev": "© 2026 Desarrollado por ",
+                "footer-license": ". Licencia Open Source MIT."
+            },
+            en: {
+                "nav-features": "Features",
+                "nav-how": "How it works",
+                "hero-version": "VERSION 7.0 AVAILABLE",
+                "hero-title-1": "Get the 'Yes':",
+                "hero-title-2": "The perfect CV for every job.",
+                "hero-desc": "If you apply to 20 jobs, you need 20 different CVs. The generator that automatically adapts your profile to pass any ATS filter and convince managers.",
+                "hero-cta-github": "View Code on GitHub",
+                "hero-cta-features": "View Features",
+                "strat-title": "Why aren't they ",
+                "strat-title-span": "calling",
+                "strat-p1": "Using the same resume for everything is a mistake that keeps you out of processes. The recruiter looks for specific keywords and you need to **speak their language**.",
+                "strat-quote": "\"I have talent, why don't I move forward? The answer is usually that your CV is too generic for the offer.\"",
+                "strat-p2": "The winning strategy is to customize your resume for **every company** you apply to. It's heavy, it's boring... but ATS-Master Pro does it for you in seconds.",
+                "prob-title": "The Problem: The Opportunity Gap",
+                "prob-desc": "Talented people stay out because their CV is not \"mapped\" to the recruiter's keywords.",
+                "sol-title": "The Solution: Automatic Hyper-Personalization",
+                "sol-desc": "Our AI tailors your narrative for each specific offer, ensuring your capabilities turn into interviews.",
+                "feat-head": "What really matters",
+                "feat-sub": "Everything you need to make your search a breeze.",
+                "feat-1-title": "Private and Secure",
+                "feat-1-desc": "Your personal data never leaves your PC if you use local AI. You can sleep peacefully knowing your email or phone are yours and no one else's.",
+                "feat-2-title": "Scale Your Search",
+                "feat-2-desc": "Seen 20 interesting offers? Put the 20 URLs in the config and the system will generate 20 unique CVs in a single pass. Save hours of repetitive work.",
+                "feat-3-title": "Make it Yours",
+                "feat-3-desc": "AI does 90% of the hard work, but you can touch up final details with an intermediate JSON before generating the final PDF.",
+                "scale-title": "Scale your search effortlessly",
+                "scale-1-desc": "Jobs that interest you every week",
+                "scale-process": "AI Processed",
+                "scale-2-desc": "Unique CVs generated instantly",
+                "scale-quote": "\"As many offers as you want, as many resumes as you need. **Massive personalization** in one click.\"",
+                "how-head": "Zero-Config, High-Impact.",
+                "step-1-title": "Smart Ingestion",
+                "step-1-desc": "Paste the InfoJobs or LinkedIn URL and the system extracts technical context automatically.",
+                "step-2-title": "GitHub Enrichment",
+                "step-2-desc": "The Pipeline analyzes your real repositories to inject technical evidence into your career path.",
+                "step-3-title": "Senior Generation",
+                "step-3-desc": "Our narrative engine (Action + Result) transforms your basic tasks into high-value achievements.",
+                "final-title": "Stop sending resumes blindly.",
+                "final-desc": "Start generating resumes that actually get read. Set up your AI in one minute and take control of your tech career right now.",
+                "final-cta": "Start Free on GitHub",
+                "footer-dev": "© 2026 Developed by ",
+                "footer-license": ". Open Source MIT License."
+            }
+        };
+
+        let currentLang = localStorage.getItem('lang') || (navigator.language.startsWith('es') ? 'es' : 'en');
+
+        function updateContent() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    el.innerHTML = translations[currentLang][key];
+                }
+            });
+            document.getElementById('current-lang-label').innerText = currentLang.toUpperCase();
+            document.documentElement.lang = currentLang;
+            localStorage.setItem('lang', currentLang);
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'es' ? 'en' : 'es';
+            updateContent();
+        }
+
+        // Initialize
+        updateContent();
     </script>
 </body>
 </html>
