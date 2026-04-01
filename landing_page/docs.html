@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docs | ATS-Master CV Generator Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Outfit', 'sans-serif'] },
+                    colors: { dark: '#050505', accent: { cyan: '#00F5FF', purple: '#A855F7' } }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .text-gradient { background: linear-gradient(90deg, #00F5FF, #A855F7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body class="bg-dark text-gray-100 font-sans selection:bg-accent-cyan selection:text-dark">
+
+    <!-- Header / Nav -->
+    <nav class="fixed top-0 w-full z-50 glass border-b border-white/5 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <i data-lucide="arrow-left" class="text-accent-cyan w-5 h-5 group-hover:-translate-x-1 transition"></i>
+                <span class="font-bold text-xl tracking-tight">ATS-Master <span class="text-accent-cyan">Pro</span></span>
+            </a>
+            <div class="flex items-center gap-4">
+                <iframe src="https://ghbtns.com/github-btn.html?user=Ro0oman&repo=pythonCVGenerator&type=star&count=true&size=large" frameborder="0" scrolling="0" width="170" height="30" title="GitHub"></iframe>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-6 pt-32 pb-24">
+        <h1 class="text-5xl font-extrabold mb-8 text-gradient">Documentación Técnica</h1>
+        <p class="text-xl text-gray-400 mb-12">Guía completa sobre modelos de IA, configuración y arquitectura del proyecto.</p>
+
+        <!-- Model Comparison -->
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
+                <i data-lucide="cpu" class="text-accent-cyan"></i> Comparativa de Modelos
+            </h2>
+            <div class="glass overflow-hidden rounded-3xl border border-white/10">
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-white/5 text-gray-300 font-bold border-b border-white/10">
+                        <tr>
+                            <th class="px-6 py-4">Modelo</th>
+                            <th class="px-6 py-4">Categoría</th>
+                            <th class="px-6 py-4">RPM / TPM</th>
+                            <th class="px-6 py-4">Privacidad</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/5">
+                        <tr class="hover:bg-white/5 transition">
+                            <td class="px-6 py-4 font-bold text-accent-cyan">Gemini 1.5 Flash</td>
+                            <td class="px-6 py-4">Cloud (Google)</td>
+                            <td class="px-6 py-4 text-xs">15 / 1M</td>
+                            <td class="px-6 py-4 text-xs text-gray-400">Moderada (API)</td>
+                        </tr>
+                        <tr class="hover:bg-white/5 transition">
+                            <td class="px-6 py-4 font-bold text-accent-purple">Llama 3.2 8B</td>
+                            <td class="px-6 py-4">Local (Ollama)</td>
+                            <td class="px-6 py-4 text-xs">Ilimitado (Hardware)</td>
+                            <td class="px-6 py-4 text-xs text-green-400">Máxima (100% Offline)</td>
+                        </tr>
+                        <tr class="hover:bg-white/5 transition">
+                            <td class="px-6 py-4 font-bold text-accent-cyan">Gemma 3 4B</td>
+                            <td class="px-6 py-4">Local (Ollama)</td>
+                            <td class="px-6 py-4 text-xs">Ilimitado (Eficiente)</td>
+                            <td class="px-6 py-4 text-xs text-green-400">Máxima (100% Offline)</td>
+                        </tr>
+                        <tr class="hover:bg-white/5 transition">
+                            <td class="px-6 py-4 font-bold text-gray-400">GPT-4o (OpenAI)</td>
+                            <td class="px-6 py-4">Cloud (Backup)</td>
+                            <td class="px-6 py-4 text-xs">Variable (Tier)</td>
+                            <td class="px-6 py-4 text-xs text-gray-400">Moderada (API)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="mt-4 text-xs text-gray-500 italic">* RPM: Request Per Minute | TPM: Tokens Per Minute</p>
+        </section>
+
+        <!-- Pipeline Steps -->
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
+                <i data-lucide="layers" class="text-accent-purple"></i> El Pipeline Industrial
+            </h2>
+            <div class="space-y-6">
+                <!-- Step 1 -->
+                <div class="glass p-8 rounded-3xl">
+                    <h3 class="text-xl font-bold mb-3">1. Ingesta Híbrida (`IngestStep`)</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed underline decoration-accent-cyan decoration-2 underline-offset-4">
+                        Detecta automáticamente si la oferta es de InfoJobs o LinkedIn. Extrae el texto bruto y lo pre-procesa para la IA.
+                    </p>
+                </div>
+                <!-- Step 2 -->
+                <div class="glass p-8 rounded-3xl">
+                    <h3 class="text-xl font-bold mb-3">2. Enriquecimiento de GitHub (`EnrichmentStep`)</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        Analiza tus repositorios públicos. No solo lee el README, busca lenguajes y stacks utilizados para inyectar evidencias reales (Zero-Hallucination).
+                    </p>
+                </div>
+                <!-- Step 3 -->
+                <div class="glass p-8 rounded-3xl border-accent-cyan/20">
+                    <h3 class="text-xl font-bold mb-3 text-accent-cyan">3. Modo Retoque V7 (`Human-in-the-Loop`)</h3>
+                    <p class="text-sm text-gray-400 leading-relaxed">
+                        Una innovación crítica: El sistema separa la **IA** del **Renderizado**. Genera un archivo `resume_to_retouch.json` que el usuario puede editar manualmente antes de generar el PDF final.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Installation -->
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold mb-6">Guía de Instalación</h2>
+            <div class="bg-white/5 p-8 rounded-3xl font-mono text-xs space-y-4 border border-white/10">
+                <div class="flex flex-col gap-2">
+                    <p class="text-gray-500"># 1. Clonar el repositorio</p>
+                    <p class="text-accent-cyan">git clone https://github.com/Ro0oman/pythonCVGenerator.git</p>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <p class="text-gray-500"># 2. Instalar dependencias</p>
+                    <p class="text-accent-cyan">pip install -r requirements.txt</p>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <p class="text-gray-500"># 3. Configurar API (Si usas Cloud)</p>
+                    <p class="text-accent-cyan">echo "GEMINI_API_KEY=tu_key" > .env</p>
+                </div>
+                <div class="flex flex-col gap-2 border-t border-white/10 pt-4">
+                    <p class="text-gray-500"># 4. Iniciar (Modo Local)</p>
+                    <p class="text-white">ollama run llama3.2</p>
+                    <p class="text-white">python main.py</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="mt-32 pt-12 border-t border-white/5 text-center text-gray-500 text-sm">
+            <p>© 2026 Roman Myziuk | Pro CV Master</p>
+        </footer>
+    </main>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
