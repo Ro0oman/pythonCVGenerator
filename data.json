@@ -1,8 +1,16 @@
 {
   "job_url": "https://www.infojobs.net/madrid/desarrollador-python/of-if202e1811a45f28a60b1f3c3544160?applicationOrigin=search-new%7Celement%7E58916276566&searchId=58916276566&page=1&sortBy=RELEVANCE",
-  "portfolio_url": "https://roman-myziuk-portfolio.vercel.app/",
+  "portfolio_url": "https://romanmyziuk.com/",
   "github_url": "https://github.com/Ro0oman",
   "linkedin_url": "https://www.linkedin.com/in/roman-myziuk/",
-  "generate_cover_letter": false,
-  "llm_provider": "gemini"
+  "generate_cover_letter": true,
+  "full_name": "Roman Myziuk",
+  "llm_provider": "gemini",
+  "model_name": "gemini-3.1-flash-lite-preview",
+  "_help": {
+    "llm_provider_options": ["gemini", "openai", "ollama (LOCAL)"],
+    "model_name_example": "llama3.2 or gemma3:4b for local",
+    "generate_cover_letter": "Set to true to generate a cover letter",
+    "note": "Read LLM_GUIDE.md for detailed setup instructions."
+  }
 }

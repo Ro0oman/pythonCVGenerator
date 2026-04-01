@@ -3,6 +3,7 @@ import json
 import os
 from dotenv import load_dotenv
 
+from modules.llm_factory import LLMFactory
 from modules.pipeline import JobPipeline
 from modules.steps.ingest import IngestStep
 from modules.steps.extraction import DataExtractionStep
@@ -26,13 +27,24 @@ async def main():
         config = json.load(f)
 
     # 2. Define Pipeline
-    # Using 'v1' for prompt versioning by default
+    # 1. Configuration and Auto-Setup (V6.5)
+    provider = config.get('llm_provider', 'gemini')
+    model_name = config.get('model_name')
+
+    print("🚀 ATS-Master CV Generator Pro (V6.5: Hybrid Architecture)")
+    
+    if provider == "ollama":
+        target_model = model_name or "llama3:8b"
+        print(f"🏠 MODO LOCAL ACTIVADO: Usando {target_model}")
+        print("⚠️  AVISO: Se recomiendan 6GB de RAM/VRAM para un rendimiento óptimo.")
+        LLMFactory.check_and_pull_model(target_model)
+    
     pipeline = JobPipeline([
         IngestStep(),
-        DataExtractionStep(provider=config.get('llm_provider', 'gemini')),
+        DataExtractionStep(provider=provider, model_name=model_name),
         EnrichmentStep(),
-        CVOptimizationStep(provider=config.get('llm_provider', 'gemini'), prompt_version="v1"),
-        LetterGenerationStep(provider=config.get('llm_provider', 'gemini')),
+        CVOptimizationStep(provider=provider, model_name=model_name, prompt_version="v1"),
+        LetterGenerationStep(provider=provider, model_name=model_name),
         RenderStep(),
         CostReportingStep()
     ])

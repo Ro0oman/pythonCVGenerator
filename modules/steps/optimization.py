@@ -1,5 +1,6 @@
 import json
 import os
+import re
 from modules.pipeline import PipelineStep
 from modules.cv_optimizer import CVOptimizer
 from modules.cost_controller import CostController
@@ -7,13 +8,14 @@ from modules.models import CVData
 from pydantic import ValidationError
 
 class CVOptimizationStep(PipelineStep):
-    def __init__(self, provider="gemini", prompt_version="v1"):
+    def __init__(self, provider="gemini", model_name=None, prompt_version="v1"):
         self.provider = provider
+        self.model_name = model_name
         self.prompt_version = prompt_version
         self.cost_controller = CostController()
 
     async def execute(self, state: dict) -> dict:
-        optimizer = CVOptimizer(provider=self.provider)
+        optimizer = CVOptimizer(provider=self.provider, model_name=self.model_name)
         optimizer.prompts_dir = os.path.join("prompts", self.prompt_version)
         
         person_info = state['person_info']
@@ -64,9 +66,14 @@ class CVOptimizationStep(PipelineStep):
             prompt = f"OFERTA: {job_info['content']}\n\nORIGINAL: {original_cv}\n\nGITHUB: {github_projects}\n\nPORTFOLIO: {portfolio_url}"
             response_text, usage = await optimizer.llm.generate(sys_prompt, prompt)
             
-            clean_json = response_text.replace("```json", "").replace("```", "").strip()
-            data_dict = json.loads(clean_json)
-            validated_data = CVData(**data_dict)
-            return {"success": True, "data": validated_data.dict(), "usage": usage}
+            # Use regex for robust extraction
+            match = re.search(r'(\{.*\})', response_text, re.DOTALL)
+            if match:
+                clean_json = match.group(1).strip()
+                data_dict = json.loads(clean_json)
+                validated_data = CVData(**data_dict)
+                return {"success": True, "data": validated_data.dict(), "usage": usage}
+            else:
+                return {"success": False, "error": "No JSON object found in response", "usage": usage}
         except Exception as e:
             return {"success": False, "error": str(e), "usage": None}

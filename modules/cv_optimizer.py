@@ -9,9 +9,9 @@ class CVOptimizer:
     Core logic for CV and Cover Letter optimization using LLMs.
     """
     
-    def __init__(self, provider="gemini"):
-        self.llm = LLMFactory.get_provider(provider)
-        self.prompts_dir = "prompts"
+    def __init__(self, provider="gemini", model_name=None):
+        self.llm = LLMFactory.get_provider(provider, model_name=model_name)
+        self.prompts_dir = "prompts/v1"
 
     def _load_prompt(self, filename):
         path = os.path.join(self.prompts_dir, filename)
@@ -51,6 +51,11 @@ class CVOptimizer:
             return validated_data.dict(), usage
         except Exception as e:
             raise e
+
+    async def generate_cover_letter_raw(self, job_description: str, original_cv: str) -> tuple:
+        sys_prompt = self._load_prompt("letter_system_prompt.md")
+        prompt = f"OFERTA: {job_description}\n\nCV ORIGINAL: {original_cv}"
+        return await self.llm.generate(sys_prompt, prompt)
 
     async def generate_cover_letter(self, job_description, cv_data, portfolio_url):
         """

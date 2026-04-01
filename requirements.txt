@@ -1,5 +1,5 @@
 playwright
-google-generativeai
+google-genai
 openai
 anthropic
 python-dotenv
@@ -11,3 +11,4 @@ python-slugify
 pydantic
 pydantic-settings
 tenacity
+ollama
