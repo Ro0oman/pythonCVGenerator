@@ -229,9 +229,9 @@
                     <div class="w-12 h-12 bg-accent-purple/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
                         <i data-lucide="cpu" class="text-accent-purple"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Potencia Inteligente</h3>
+                    <h3 class="text-xl font-bold mb-4">Escala tu Búsqueda</h3>
                     <p class="text-sm text-gray-400 leading-relaxed">
-                        Combina la precisión de Gemini para los textos difíciles con la velocidad de Ollama en local. Tú mandas según lo que necesites.
+                        ¿Has visto 20 ofertas interesantes? Pon las 20 URLs en el config y el sistema generará 20 CVs únicos en una sola pasada. Ahorra horas de trabajo repetitivo.
                     </p>
                 </div>
                 <!-- Feature 3 -->
@@ -328,9 +328,11 @@
                     </div>
                     <div class="font-mono text-xs text-gray-500 space-y-2">
                         <p class="text-accent-cyan">{</p>
-                        <p class="pl-4">"llm_provider": <span class="text-white">"ollama"</span>,</p>
-                        <p class="pl-4">"model_name": <span class="text-white">"llama3.2"</span>,</p>
-                        <p class="pl-4">"generate_cover_letter": <span class="text-accent-purple">true</span></p>
+                        <p class="pl-4">"job_urls": [</p>
+                        <p class="pl-8">"linkedin.com/jobs/...",</p>
+                        <p class="pl-8">"infojobs.net/..."</p>
+                        <p class="pl-4">],</p>
+                        <p class="pl-4">"llm_provider": <span class="text-white">"gemini"</span></p>
                         <p class="text-accent-cyan">}</p>
                     </div>
                 </div>

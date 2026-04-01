@@ -15,10 +15,15 @@ class IngestStep(PipelineStep):
     async def execute(self, state: dict) -> dict:
         config = state['config']
         
-        # 1. Scraping Object Offer
-        job_info = await scrape_job_offer(config['job_url'])
+        # 1. Scraping Job Offer
+        job_url = state.get('current_job_url') or config.get('job_url')
+        if not job_url:
+            raise Exception("No se proporcionó 'job_url' o 'job_urls' en data.json")
+            
+        print(f"[*] Escaneando oferta: {job_url}")
+        job_info = await scrape_job_offer(job_url)
         if not job_info:
-            raise Exception("No se pudo obtener la información de la oferta de empleo.")
+            raise Exception(f"No se pudo obtener la información de: {job_url}")
             
         # 2. Reading Original CV
         cv_path = "cv_original.pdf" if os.path.exists("cv_original.pdf") else "cv_original.txt"

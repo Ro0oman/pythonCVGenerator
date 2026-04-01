@@ -4,12 +4,12 @@ Un generador de currículums de nivel "Senior" diseñado para superar los filtro
 
 ## 🌟 Características
 
-- **Scraping Dinámico**: Extrae descripciones de empleo de LinkedIn, InfoJobs y otros portales usando Playwright (manejando JS y renderizado dinámico).
-- **Análisis de GitHub**: Lee los READMEs de tus 3 repositorios más recientes para integrar evidencias técnicas reales en tu CV.
-- **Multi-LLM Native**: Soporte integrado para **Google Gemini**, **OpenAI (GPT-4o)** y **Anthropic (Claude 3.5)**.
-- **Optimización ATS**: Redacción basada en palabras clave, verbos de acción y métricas cuantificables.
-- **PDF Premium**: Generación directa de PDFs profesionales (con texto seleccionable) a partir de plantillas HTML/CSS.
-- **Organización por Oferta**: Crea automáticamente una carpeta en `output/` para cada aplicación con su CV y Carta de Presentación.
+- **Multi-Oferta**: Procesa una lista de URLs en un solo comando. Genera tantos CVs como ofertas de empleo proporciones.
+- **Scraping Dinámico**: Extrae descripciones de empleo de LinkedIn, InfoJobs y otros portales usando Playwright.
+- **Análisis de GitHub**: Lee los READMEs de tus repositorios para integrar evidencias técnicas reales.
+- **Multi-LLM Native**: Soporte para **Google Gemini**, **OpenAI** y **Anthropic**.
+- **PDF Premium**: Generación de PDFs profesionales desde plantillas HTML/CSS.
+- **Organización Automática**: Cada aplicación tiene su propia carpeta en `output/`.
 
 ## 🛠️ Requisitos Técnicos
 
@@ -41,17 +41,19 @@ Un generador de currículums de nivel "Senior" diseñado para superar los filtro
    ```
 
 4. **Configurar tus datos**:
-   Edita `data.json` con la URL de la oferta y tus perfiles sociales:
-   ```json
-   {
-     "job_url": "URL_DE_LA_OFERTA",
-     "portfolio_url": "TU_PORTFOLIO",
-     "github_url": "TU_GITHUB",
-     "linkedin_url": "TU_LINKEDIN",
-     "generate_cover_letter": true,
-     "llm_provider": "gemini"
-   }
-   ```
+    Edita `data.json` con la lista de URLs de las ofertas y tus perfiles:
+    ```json
+    {
+      "job_urls": [
+        "URL_OFERTA_1",
+        "URL_OFERTA_2"
+      ],
+      "portfolio_url": "TU_PORTFOLIO",
+      "github_url": "TU_GITHUB",
+      "generate_cover_letter": true,
+      "llm_provider": "gemini"
+    }
+    ```
 
 5. **Subir tu CV base**:
    Coloca tu currículum actual como `cv_original.pdf` o `cv_original.txt` en la raíz del proyecto.

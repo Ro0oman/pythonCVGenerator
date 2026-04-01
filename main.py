@@ -31,54 +31,86 @@ async def main():
     with open('data.json', 'r', encoding='utf-8') as f:
         config = json.load(f)
 
-    print(f"🚀 ATS-Master CV Generator Pro (V7.0: Retouching Mode - {args.mode.upper()})")
+    print(f"🚀 ATS-Master CV Generator Pro (V7.0: Multiple CV Mode - {args.mode.upper()})")
     
     if args.mode == "full":
-        # 1. Configuration and Auto-Setup (V6.5)
-        provider = config.get('llm_provider', 'gemini')
-        model_name = config.get('model_name')
+        # Handle multiple URLs
+        job_urls = config.get('job_urls', [])
+        if not job_urls and config.get('job_url'):
+            job_urls = [config.get('job_url')]
+        
+        if not job_urls:
+            print("[!] Advertencia: No se encontraron URLs de ofertas en data.json")
+            return
 
-        if provider == "ollama":
-            target_model = model_name or "llama3:8b"
-            print(f"🏠 MODO LOCAL ACTIVADO: Usando {target_model}")
-            LLMFactory.check_and_pull_model(target_model)
+        print(f"📋 Se han detectado {len(job_urls)} ofertas para procesar.")
         
-        pipeline = JobPipeline([
-            IngestStep(),
-            DataExtractionStep(provider=provider, model_name=model_name),
-            EnrichmentStep(),
-            CVOptimizationStep(provider=provider, model_name=model_name, prompt_version="v1"),
-            LetterGenerationStep(provider=provider, model_name=model_name),
-            RenderStep(),
-            CostReportingStep()
-        ])
+        all_results = []
         
-        final_state = await pipeline.run(initial_state={"config": config})
-        
-        # PERSISTENCIA PARA RETOQUES (V7.0)
-        # Guardamos el JSON de los datos optimizados para que el usuario pueda retocarlo
-        retouch_data = {
-            "optimized_data": final_state.get('optimized_data'),
-            "letter_data": final_state.get('letter_data'),
-            "config": config,
-            "job_info": final_state.get('job_info')
-        }
-        
-        # Guardamos uno fijo para "retoque rápido" y uno histórico
-        output_dir = final_state.get('output_folder', 'output')
-        retouch_path = os.path.join(output_dir, "resume_to_retouch.json")
-        last_retouch_path = os.path.join("output", "last_cv_data.json")
-        
-        with open(retouch_path, 'w', encoding='utf-8') as f:
-            json.dump(retouch_data, f, indent=4, ensure_ascii=False)
-        with open(last_retouch_path, 'w', encoding='utf-8') as f:
-            json.dump(retouch_data, f, indent=4, ensure_ascii=False)
+        for index, url in enumerate(job_urls, 1):
+            print(f"\n--- 🔄 PROCESANDO OFERTA {index}/{len(job_urls)} ---")
+            print(f"🔗 URL: {url}")
             
-        print(f"✍️  Archivo de retoque guardado: {retouch_path}")
-        print(f"💡 Puedes editarlo y ejecutar: python main.py --mode render --data {retouch_path}")
+            try:
+                provider = config.get('llm_provider', 'gemini')
+                model_name = config.get('model_name')
+
+                if provider == "ollama":
+                    target_model = model_name or "llama3.2"
+                    LLMFactory.check_and_pull_model(target_model)
+                
+                pipeline = JobPipeline([
+                    IngestStep(),
+                    DataExtractionStep(provider=provider, model_name=model_name),
+                    EnrichmentStep(),
+                    CVOptimizationStep(provider=provider, model_name=model_name, prompt_version="v1"),
+                    LetterGenerationStep(provider=provider, model_name=model_name),
+                    RenderStep(),
+                    CostReportingStep()
+                ])
+                
+                # Ejecutar pipeline con la URL actual en el estado
+                final_state = await pipeline.run(initial_state={"config": config, "current_job_url": url})
+                
+                # PERSISTENCIA PARA RETOQUES (V7.0)
+                retouch_data = {
+                    "optimized_data": final_state.get('optimized_data'),
+                    "letter_data": final_state.get('letter_data'),
+                    "config": config,
+                    "job_info": final_state.get('job_info')
+                }
+                
+                output_dir = final_state.get('output_folder', 'output')
+                retouch_path = os.path.join(output_dir, "resume_to_retouch.json")
+                
+                with open(retouch_path, 'w', encoding='utf-8') as f:
+                    json.dump(retouch_data, f, indent=4, ensure_ascii=False)
+                
+                all_results.append({
+                    "url": url,
+                    "cv": final_state.get('cv_pdf_path'),
+                    "letter": final_state.get('letter_pdf_path'),
+                    "folder": output_dir
+                })
+                
+            except Exception as e:
+                print(f"[❌] Error procesando la oferta {index}: {e}")
+                continue
+
+        # Resumen Final
+        print(f"\n" + "="*50)
+        print(f"🏁 RESUMEN DE GENERACIÓN ({len(all_results)}/{len(job_urls)} completados)")
+        print("="*50)
+        for res in all_results:
+            print(f"✅ EXITO: {res['url']}")
+            print(f"   📂 Carpeta: {res['folder']}")
+            print(f"   📄 CV: {res['cv']}")
+            if res['letter']:
+                print(f"   📄 Carta: {res['letter']}")
+            print("-" * 30)
 
     else:
-        # MODO RENDER (Carga desde JSON)
+        # MODO RENDER (Carga desde JSON - Mantenemos compatibilidad básica para un solo archivo)
         json_path = args.data or os.path.join("output", "last_cv_data.json")
         if not os.path.exists(json_path):
             print(f"[!] Error: No se encuentra el archivo de datos: {json_path}")
@@ -93,24 +125,9 @@ async def main():
             CostReportingStep()
         ])
         
-        # Restauramos el estado desde el JSON
         final_state = await pipeline.run(initial_state=retouch_data)
-
-    # Final Success Summary
-    print(f"\n✅ Proceso completado con éxito.")
-    print(f"📂 Carpeta de salida: {final_state.get('output_folder')}")
-    print(f"📄 CV: {final_state.get('cv_pdf_path')}")
-    if final_state.get('letter_pdf_path'):
-        print(f"📄 Carta: {final_state.get('letter_pdf_path')}")
+        print(f"\n✅ Renderizado completado.")
+        print(f"📄 CV: {final_state.get('cv_pdf_path')}")
 
 if __name__ == "__main__":
     asyncio.run(main())
-
-
-# 1. Cargar Configuración
-# 2. Ingesta (PDF + GitHub)
-# 3. Extracción (Identidad + Perfiles)
-# 4. Enriquecimiento (Datos de GitHub)
-# 5. Optimización (CV + Carta)
-# 6. Renderizado (PDFs)
-# 7. Reporte (Costes + Recomendaciones)
