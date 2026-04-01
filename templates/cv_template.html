@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CV Optimizado ATS</title>
+    <style>
+        /* Modern & Premium Design for ATS compatibility */
+        :root {
+            --primary: #2c3e50;
+            --secondary: #34495e;
+            --accent: #2980b9;
+            --text: #333;
+            --light: #f4f7f6;
+        }
+        
+        body {
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            color: var(--text);
+            line-height: 1.5;
+            margin: 0;
+            padding: 0;
+            background: white;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: var(--primary);
+            font-size: 28px;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .contact-info {
+            font-size: 13px;
+            color: var(--secondary);
+            margin-top: 5px;
+        }
+        
+        h2 {
+            border-left: 4px solid var(--accent);
+            padding-left: 10px;
+            color: var(--primary);
+            font-size: 18px;
+            text-transform: uppercase;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            background: var(--light);
+        }
+        
+        .summary {
+            font-style: italic;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        .experience-item, .project-item {
+            margin-bottom: 20px;
+        }
+        
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .achievements {
+            margin-top: 5px;
+            padding-left: 20px;
+        }
+        
+        .achievements li {
+            margin-bottom: 5px;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+        
+        .skill-category span {
+            font-weight: bold;
+            color: var(--accent);
+        }
+        
+        .tag {
+            display: inline-block;
+            background: #e1e8ed;
+            padding: 2px 8px;
+            margin: 2px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        
+        /* ATS specific: Avoid tables/complex columns for pure text reading */
+        @media print {
+            body { background: none; }
+            .tag { border: 1px solid #ccc; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>{{ data.full_name }}</h1>
+        <div class="contact-info">
+            {{ data.contact.email }} | {{ data.contact.linkedin }} | {{ data.contact.github }} | {{ data.contact.portfolio }}
+        </div>
+    </div>
+
+    <section>
+        <h2>Resumen Profesional</h2>
+        <div class="summary">
+            {{ data.summary }}
+        </div>
+    </section>
+
+    <section>
+        <h2>Experiencia Profesional</h2>
+        {% for exp in data.experience %}
+        <div class="experience-item">
+            <div class="job-header">
+                <span>{{ exp.role }} @ {{ exp.company }}</span>
+                <span>{{ exp.period }}</span>
+            </div>
+            <ul class="achievements">
+                {% for log in exp.achievements %}
+                <li>{{ log }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </section>
+
+    <section>
+        <h2>Habilidades Técnicas</h2>
+        <div class="skill-category">
+            <span>Hard Skills:</span> 
+            {% for s in data.skills.hard %}
+            <span class="tag">{{ s }}</span>
+            {% endfor %}
+        </div>
+        <div class="skill-category" style="margin-top: 10px;">
+            <span>Soft Skills:</span> 
+            {% for s in data.skills.soft %}
+            <span class="tag">{{ s }}</span>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section>
+        <h2>Proyectos Destacados</h2>
+        {% for p in data.projects %}
+        <div class="project-item">
+            <div style="font-weight: bold; color: var(--primary);">{{ p.name }} <small>({{ p.tech_stack }})</small></div>
+            <div style="font-size: 14px;">{{ p.description }}</div>
+        </div>
+        {% endfor %}
+    </section>
+
+    <section>
+        <h2>Educación</h2>
+        {% for ed in data.education %}
+        <div style="display: flex; justify-content: space-between;">
+            <span>{{ ed.degree }} - {{ ed.institution }}</span>
+            <span>{{ ed.year }}</span>
+        </div>
+        {% endfor %}
+    </section>
+</body>
+</html>

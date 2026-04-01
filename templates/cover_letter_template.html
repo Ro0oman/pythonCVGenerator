@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Carta de Presentación</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+            margin: 40px;
+        }
+        .header {
+            margin-bottom: 40px;
+            color: #2c3e50;
+        }
+        .content {
+            text-align: justify;
+        }
+        .signature {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <strong>{{ data.full_name }}</strong><br>
+        {{ data.contact.email }} | {{ data.contact.linkedin }}<br>
+        {{ data.contact.portfolio }}
+    </div>
+
+    <div class="content">
+        {{ data.letter_body | replace('\n', '<br>') }}
+    </div>
+
+    <div class="signature">
+        Atentamente,<br><br>
+        <strong>{{ data.full_name }}</strong>
+    </div>
+</body>
+</html>

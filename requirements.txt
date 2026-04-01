@@ -1,0 +1,10 @@
+playwright
+google-generativeai
+openai
+anthropic
+python-dotenv
+pydf2
+jinja2
+beautifulsoup4
+requests
+python-slugify

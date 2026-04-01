@@ -1,0 +1,8 @@
+{
+  "job_url": "https://www.linkedin.com/jobs/view/123456/",
+  "portfolio_url": "https://tu-portfolio.dev",
+  "github_url": "https://github.com/tu-usuario",
+  "linkedin_url": "https://linkedin.com/in/tu-perfil",
+  "generate_cover_letter": true,
+  "llm_provider": "gemini"
+}
