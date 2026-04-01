@@ -1,6 +1,8 @@
 import asyncio
 import json
 import os
+from datetime import datetime
+from slugify import slugify
 from dotenv import load_dotenv
 from modules.scraper import scrape_job_offer
 from modules.github_analyzer import get_recent_github_repos
@@ -57,16 +59,21 @@ async def main():
 
     # 6. Generación de PDF y Carpetas
     generator = PDFGenerator()
+    timestamp = datetime.now().strftime("%Y-%m-%d")
+    user_name_slug = slugify(optimized_data['full_name'])
+    job_title_slug = slugify(job_info['title'][:50])
+    
     folder_path = generator.create_output_folder(
         job_title=job_info['title'][:50], 
         company="Job"
     )
     
-    # Render CV
-    cv_output = os.path.join(folder_path, "CV_Optimizado.pdf")
+    # Render CV with custom filename
+    cv_filename = f"CV-{user_name_slug}-{job_title_slug}-{timestamp}.pdf"
+    cv_output = os.path.join(folder_path, cv_filename)
     await generator.generate_pdf("cv_template.html", optimized_data, cv_output)
 
-    # Render Cover Letter (Optional)
+    # Render Cover Letter (Optional) with custom filename
     if config.get('generate_cover_letter'):
         print("[*] Generando Carta de Presentación...")
         letter_content = await optimizer.generate_cover_letter(
@@ -82,7 +89,8 @@ async def main():
             "portfolio": config['portfolio_url']
         }
         
-        letter_output = os.path.join(folder_path, "Carta_Presentacion.pdf")
+        letter_filename = f"Carta-Presentacion-{user_name_slug}-{job_title_slug}-{timestamp}.pdf"
+        letter_output = os.path.join(folder_path, letter_filename)
         await generator.generate_pdf("cover_letter_template.html", letter_data, letter_output)
 
     print("\n✅ Proceso completado con éxito.")
