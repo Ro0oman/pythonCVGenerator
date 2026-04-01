@@ -26,6 +26,14 @@ class Education(BaseModel):
     description: Optional[str] = ""
     hard_skills: List[str] = []
 
+class PersonInfo(BaseModel):
+    full_name: str
+    email: str
+    linkedin_url: Optional[str] = None
+    github_url: Optional[str] = None
+    portfolio_url: Optional[str] = None
+    target_stack_detected: Optional[str] = "Fullstack Developer"
+
 class CVData(BaseModel):
     full_name: str
     contact: Contact

@@ -20,13 +20,14 @@ class CVOptimizer:
                 return f.read()
         return ""
 
-    async def optimize_cv(self, job_description, original_cv, github_projects, portfolio_url):
+    async def optimize_cv(self, job_description, original_cv, github_projects, portfolio_url, error_context=""):
         """
-        Generates a structured JSON with the optimized CV content (V5: Senior Architect).
-        Validated via Pydantic and external prompts.
+        Generates a structured JSON with the optimized CV content (V6: Senior Production).
         """
         system_prompt = self._load_prompt("cv_system_prompt.md")
-        
+        if error_context:
+            system_prompt += f"\n\nATENCIÓN: Tu intento anterior falló con este error: {error_context}. Por favor, corrígelo."
+
         prompt = f"""
         OFERTA DE EMPLEO:
         {job_description}
@@ -41,21 +42,15 @@ class CVOptimizer:
         {portfolio_url}
         """
         
-        response_text = await self.llm.generate(system_prompt, prompt)
+        response_text, usage = await self.llm.generate(system_prompt, prompt)
         
         try:
-            # Clean possible markdown formatting from LLM
             clean_json = response_text.replace("```json", "").replace("```", "").strip()
             data_dict = json.loads(clean_json)
-            
-            # Pydantic Validation
             validated_data = CVData(**data_dict)
-            return validated_data.dict()
-            
+            return validated_data.dict(), usage
         except Exception as e:
-            print(f"[!] Error de validación Pydantic o JSON: {e}")
-            print(f"[DEBUG] Raw Response: {response_text[:500]}...")
-            return None
+            raise e
 
     async def generate_cover_letter(self, job_description, cv_data, portfolio_url):
         """

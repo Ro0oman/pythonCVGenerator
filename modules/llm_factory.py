@@ -1,77 +1,76 @@
 import os
-import google.generativeai as genai
 from openai import OpenAI
-import anthropic
+import google.generativeai as genai
 from dotenv import load_dotenv
+from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 
 load_dotenv()
 
-class LLMFactory:
-    """
-    Factory for handling multiple LLM providers: Gemini, OpenAI, Anthropic.
-    Ensures a consistent interface for the application.
-    """
-    
-    @staticmethod
-    def get_provider(provider="gemini"):
-        return LLMFactory(provider)
+class LLMProvider:
+    """Interface for LLM providers."""
+    async def generate(self, system: str, prompt: str) -> tuple:
+        pass
 
-    def __init__(self, provider="gemini"):
-        self.provider = provider.lower()
-        self.model = None
-        
-        if self.provider == "gemini":
-            api_key = os.getenv("GEMINI_API_KEY")
-            if not api_key: raise ValueError("GEMINI_API_KEY no encontrada")
-            genai.configure(api_key=api_key)
-            self.model = genai.GenerativeModel('gemini-flash-latest')
-            
-        elif self.provider == "openai":
-            api_key = os.getenv("OPENAI_API_KEY")
-            if not api_key: raise ValueError("OPENAI_API_KEY no encontrada")
+class GeminiProvider(LLMProvider):
+    def __init__(self, model_name="gemini-flash-latest"):
+        api_key = os.getenv("GEMINI_API_KEY")
+        if not api_key: raise ValueError("GEMINI_API_KEY no encontrada")
+        genai.configure(api_key=api_key)
+        self.model = genai.GenerativeModel(model_name)
+        self.name = model_name
+
+    @retry(
+        stop=stop_after_attempt(3),
+        wait=wait_exponential(multiplier=1, min=2, max=10),
+        retry=retry_if_exception_type(Exception)
+    )
+    async def generate(self, system: str, prompt: str) -> tuple:
+        full_p = f"{system}\n\n{prompt}"
+        response = await self.model.generate_content_async(full_p)
+        usage = getattr(response, 'usage_metadata', None)
+        return response.text, usage
+
+class OpenAIProvider(LLMProvider):
+    def __init__(self, model_name="gpt-4o"):
+        api_key = os.getenv("OPENAI_API_KEY")
+        if not api_key: 
+            self.client = None
+        else:
             self.client = OpenAI(api_key=api_key)
-            
-        elif self.provider == "anthropic":
-            api_key = os.getenv("ANTHROPIC_API_KEY")
-            if not api_key: raise ValueError("ANTHROPIC_API_KEY no encontrada")
-            self.client = anthropic.Anthropic(api_key=api_key)
-            
-    async def generate(self, system_instruction: str, prompt: str):
-        """
-        Sends a prompt to the selected LLM and returns the response.
-        """
-        if self.provider == "gemini":
-            # Gemini handles system instructions in the model config or combined
-            full_prompt = f"{system_instruction}\n\n{prompt}"
-            response = await self.model.generate_content_async(full_prompt)
-            return response.text
-            
-        elif self.provider == "openai":
-            response = self.client.chat.completions.create(
-                model="gpt-4o",
-                messages=[
-                    {"role": "system", "content": system_instruction},
-                    {"role": "user", "content": prompt}
-                ]
-            )
-            return response.choices[0].message.content
-            
-        elif self.provider == "anthropic":
-            response = self.client.messages.create(
-                model="claude-3-5-sonnet-20240620",
-                max_tokens=2048,
-                system=system_instruction,
-                messages=[{"role": "user", "content": prompt}]
-            )
-            return response.content[0].text
-            
-        return ""
+        self.name = model_name
 
-if __name__ == "__main__":
-    # Mock test (requires API keys)
-    import asyncio
-    try:
-        factory = LLMFactory("gemini")
-        print("[*] LLM Factory Inicializada.")
-    except Exception as e:
-        print(f"[!] Error: {e}")
+    @retry(
+        stop=stop_after_attempt(3),
+        wait=wait_exponential(multiplier=1, min=2, max=10),
+        retry=retry_if_exception_type(Exception)
+    )
+    async def generate(self, system: str, prompt: str) -> tuple:
+        if not self.client:
+            raise ValueError("OPENAI_API_KEY no configurada para fallback.")
+        response = self.client.chat.completions.create(
+            model=self.name,
+            messages=[{"role": "system", "content": system}, {"role": "user", "content": prompt}]
+        )
+        return response.choices[0].message.content, response.usage
+
+class LLMFactory:
+    @staticmethod
+    def get_provider(provider="gemini", use_fallback=True):
+        return LLMFactory(provider, use_fallback)
+
+    def __init__(self, provider="gemini", use_fallback=True):
+        self.providers = []
+        if provider == "gemini":
+            self.providers.append(GeminiProvider())
+            if use_fallback: self.providers.append(OpenAIProvider())
+        elif provider == "openai":
+            self.providers.append(OpenAIProvider())
+            if use_fallback: self.providers.append(GeminiProvider())
+
+    async def generate(self, system: str, prompt: str):
+        for provider in self.providers:
+            try:
+                return await provider.generate(system, prompt)
+            except Exception as e:
+                print(f"[*] Provider {provider.name} failed: {e}. Trying next...")
+        raise Exception("All providers failed.")
