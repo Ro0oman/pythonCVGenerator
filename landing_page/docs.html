@@ -131,24 +131,32 @@
                 <div class="glass p-8 rounded-3xl border-accent-cyan/20">
                     <h3 class="text-xl font-bold mb-3 text-accent-cyan">3. Modo Retoque V7 (`Human-in-the-Loop`)</h3>
                     <p class="text-sm text-gray-400 leading-relaxed mb-6">
-                        Una innovación crítica: El sistema separa la **IA** del **Renderizado**. Genera un archivo `resume_to_retouch.json` que el usuario puede editar manualmente antes de generar el PDF final.
+                        El sistema separa la **IA** del **Renderizado** para permitir ajustes finos manuales.
                     </p>
                     
-                    <div class="bg-dark/50 p-6 rounded-2xl border border-white/5 font-mono text-[11px] mb-6">
-                        <p class="text-gray-500">// Edita el JSON para ajustar la narrativa</p>
-                        <p class="text-accent-purple">{</p>
-                        <p class="pl-4">"optimized_data": {</p>
-                        <p class="pl-8 text-accent-cyan">"summary": "Fullstack Developer Senior con enfoque en...",</p>
-                        <p class="pl-8 text-accent-cyan">"experience": [ { "role": "Lead Dev", ... } ]</p>
-                        <p class="pl-4">}</p>
-                        <p class="text-accent-purple">}</p>
+                    <div class="space-y-4 mb-8">
+                        <div class="flex gap-4 items-start">
+                            <div class="w-6 h-6 rounded-full bg-accent-cyan/10 border border-accent-cyan/30 flex items-center justify-center text-[10px] font-bold text-accent-cyan flex-shrink-0 mt-1">1</div>
+                            <p class="text-xs text-gray-400"><b class="text-white">Generación</b>: Ejecuta <code class="text-accent-cyan">python main.py</code>. Se crea un <code class="text-white">resume_to_retouch.json</code> en el output.</p>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <div class="w-6 h-6 rounded-full bg-accent-purple/10 border border-accent-purple/30 flex items-center justify-center text-[10px] font-bold text-accent-purple flex-shrink-0 mt-1">2</div>
+                            <p class="text-xs text-gray-400"><b class="text-white">Edición</b>: Abre el JSON y retoca la narrativa, logros o resumen técnico.</p>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <div class="w-6 h-6 rounded-full bg-accent-cyan/10 border border-accent-cyan/30 flex items-center justify-center text-[10px] font-bold text-accent-cyan flex-shrink-0 mt-1">3</div>
+                            <p class="text-xs text-gray-400"><b class="text-white">Render</b>: Ejecuta <code class="text-accent-cyan">python main.py --mode render --data ...</code> para generar el PDF final.</p>
+                        </div>
                     </div>
 
-                    <div class="flex flex-col gap-4">
-                        <div class="flex items-start gap-3">
-                            <i data-lucide="terminal" class="w-4 h-4 text-accent-cyan mt-1"></i>
-                            <p class="text-xs text-gray-300"><b>Comando de renderizado:</b><br><code class="bg-white/5 px-2 py-1 rounded">python main.py --mode render --data path/to/json</code></p>
-                        </div>
+                    <div class="bg-dark/50 p-6 rounded-2xl border border-white/5 font-mono text-[11px]">
+                        <p class="text-gray-500">// Estructura simplificada del retoque</p>
+                        <p class="text-accent-purple">{</p>
+                        <p class="pl-4">"optimized_data": {</p>
+                        <p class="pl-8 text-accent-cyan">"summary": "Fullstack Engineer con enfoque en AWS...",</p>
+                        <p class="pl-8 text-accent-cyan">"experience": [ { "role": "Senior Engineer", ... } ]</p>
+                        <p class="pl-4">}</p>
+                        <p class="text-accent-purple">}</p>
                     </div>
                 </div>
             </div>
