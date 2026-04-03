@@ -130,9 +130,26 @@
                 <!-- Step 3 -->
                 <div class="glass p-8 rounded-3xl border-accent-cyan/20">
                     <h3 class="text-xl font-bold mb-3 text-accent-cyan">3. Modo Retoque V7 (`Human-in-the-Loop`)</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed">
+                    <p class="text-sm text-gray-400 leading-relaxed mb-6">
                         Una innovación crítica: El sistema separa la **IA** del **Renderizado**. Genera un archivo `resume_to_retouch.json` que el usuario puede editar manualmente antes de generar el PDF final.
                     </p>
+                    
+                    <div class="bg-dark/50 p-6 rounded-2xl border border-white/5 font-mono text-[11px] mb-6">
+                        <p class="text-gray-500">// Edita el JSON para ajustar la narrativa</p>
+                        <p class="text-accent-purple">{</p>
+                        <p class="pl-4">"optimized_data": {</p>
+                        <p class="pl-8 text-accent-cyan">"summary": "Fullstack Developer Senior con enfoque en...",</p>
+                        <p class="pl-8 text-accent-cyan">"experience": [ { "role": "Lead Dev", ... } ]</p>
+                        <p class="pl-4">}</p>
+                        <p class="text-accent-purple">}</p>
+                    </div>
+
+                    <div class="flex flex-col gap-4">
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="terminal" class="w-4 h-4 text-accent-cyan mt-1"></i>
+                            <p class="text-xs text-gray-300"><b>Comando de renderizado:</b><br><code class="bg-white/5 px-2 py-1 rounded">python main.py --mode render --data path/to/json</code></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>

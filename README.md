@@ -69,6 +69,33 @@ python main.py
 El script te avisará por consola cuando termine y podrás encontrar tus documentos en:
 `output/[Fecha]-[Empresa]-[Puesto]/`
 
+## 🖌️ Modo Retoque (Human-in-the-Loop)
+
+ATS-Master Pro (V7+) permite refinar manualmente el contenido antes de generar el PDF final. Este flujo es ideal para ajustar matices que la IA haya podido sobre-optimizar.
+
+1.  **Ejecución Completa**: Corre el script normalmente. Se generará un archivo `resume_to_retouch.json` en la carpeta de salida de cada oferta.
+2.  **Edición Manual**: Abre dicho JSON y modifica los campos que desees (como `summary` o los `achievements` de la experiencia).
+
+    ```json
+    {
+      "optimized_data": {
+        "summary": "Fullstack Developer con 5 años de experiencia...",
+        "experience": [
+          {
+            "role": "Senior Engineer",
+            "achievements": ["Liderazgo de equipo", "Migración a AWS"]
+          }
+        ]
+      }
+    }
+    ```
+
+3.  **Renderizado Final**: Lanza de nuevo el generador en modo `render` apuntando a tu JSON editado:
+
+    ```bash
+    python main.py --mode render --data output/CARPETA_OFERTA/resume_to_retouch.json
+    ```
+
 ## 📁 Estructura del Proyecto
 
 ```text
